@@ -2,7 +2,7 @@
 
 ## Contenido
 
-*   [Despliegue de Tomcat a partir de una imagen Docker.](https://github.com/JulianaLeonGonzalez/Kubernetes-Hands-On/blob/master/README.md#despliegue-de-tomcat-a-partir-de-una-imagen-docker)
+*   [Despliegue de Tomcat a partir de una imagen Docker.](#despliegue-de-tomcat-a-partir-de-una-imagen-docker)
 *   Despliegue de Tomcat a partir de un Chart de Helm.
 
 ## Pre-requisitos
