@@ -90,3 +90,11 @@ kubectl get services
 Ingrese en su navegador  \<IP\_pública\_del\_clúster>:\<Node\_port>, por ejemplo **169.47.168.99:30469.** Y finalmente verifique en el panel de control de Kubernetes que su despliegue y servicio no tenga ningún problema
 
 ![](https://user-images.githubusercontent.com/60897075/93120026-5af1c280-f688-11ea-90b8-c73e58f3bc99.gif)
+
+## **Referencias** :mag\_right:
+
+Encuentre más información sobre [IBM Kubernetes Service](https://cloud.ibm.com/docs/containers?topic=containers-getting-started) 
+
+## **Autores** :black\_nib:
+
+Equipo IBM Cloud Tech Sales Colombia.
