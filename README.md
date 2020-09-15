@@ -20,7 +20,7 @@ En esta sección encontrará el paso a paso para desplegar la imagen más recien
 1.  Una vez haya iniciado sesión con su cuenta de IBM Cloud, ingrese a la [lista de recursos](https://cloud.ibm.com/resources).
 2.  En la pestaña **Clústeres** de clic en el nombre **cluster-prueba,** que corresponde al nombre del clúster que se usará en la guía.
 3.  Pulse el botón **Panel de control de kubernetes,** esto abrirá una nueva pestaña con la información del clúster que se usará a lo largo del Hands-On.
-4.  Regrese a la página de IBM Cloud y de clic en el icono de **IBM Cloud Shell** (el cuarto botón de derecha a izquierda en la barra superior). Esto abrirá una nueva pestaña en su navegador.
+4.  Para ingresar a IBM Cloud Shell de clic en este [link](https://cloud.ibm.com/shell) ó regrese a la página de IBM Cloud y de clic en el icono de **IBM Cloud Shell** (el cuarto botón de derecha a izquierda en la barra superior). 
 
 ![](https://user-images.githubusercontent.com/60897075/93118767-6348fe00-f686-11ea-935b-d632e7cacdc4.gif)
 
