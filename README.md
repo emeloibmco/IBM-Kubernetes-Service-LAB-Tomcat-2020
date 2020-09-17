@@ -15,7 +15,7 @@
 
 En esta sección encontrará el paso a paso para desplegar la imagen más reciente de Tomcat disponible en Docker, en un clúster de Kubernetes, utilizando IBM Cloud Shell.
 
-### **IBM Cloud Shell**
+### **Ingresar a IBM Cloud Shell**
 
 Una vez haya [iniciado sesión](https://cloud.ibm.com/login) con su cuenta de IBM Cloud, seleccione la cuenta **"Edgar Melo´s Account"** en la barra superior, e ingrese a [IBM Cloud Shell](https://cloud.ibm.com/shell) (también puede ingresar dando clic en el cuarto icono de derecha a izquierda en la barra superior dentro de la página de IBM Cloud).
 
@@ -23,51 +23,48 @@ Una vez haya [iniciado sesión](https://cloud.ibm.com/login) con su cuenta de IB
 
 ### Crear el despliegue de la imagen de Tomcat
 
-1.  Desde **IBM Cloud Shell** descargue la configuración del clúster mediante el siguiente comando (en el comando se usa el ID del clúster, que puede obtener mediante: `ibmcloud ks cluster ls`).
+1.  Desde **IBM Cloud Shell** descargue la configuración del clúster mediante el siguiente comando (en el comando se usa el ID del clúster, que puede obtener mediante: `ibmcloud ks cluster ls`). Recuerde que puede hacer uso de **Ctrl + Shift + V** para pegar dentro de IBM Cloud Shell.
 
 ```
 ibmcloud ks cluster config --cluster btgjo8sw0613303fjbf0
 ```
 
-```
-ibmcloud target -r us-east -g openshift-workshop
-```
-
-2\. Cree un espacio de nombres único mediante el siguiente comando, modifique el valor \<nombreapellidons> por sus datos.
+   2. Cree un espacio de nombres mediante el siguiente comando, modifique el valor \<namespace> por un nombre único.
 
 ```
- ibmcloud cr namespace-add <nombreapellidons>
- Ejemplo: ibmcloud cr namespace-add julianaleonns
+kubectl create namespace <namespace>
+ Ejemplo: kubectl create namespace julianaleonns
 ```
 
-   2. Cree el servicio de despliegue en Kubernetes, para esto, ejecute los comandos a continuación. Recuerde modificar el valor **\<nombreapellidodeployment>** por sus datos, para dar un nombre único a su despliegue.
+   3. Cree el servicio de despliegue en Kubernetes, para esto, ejecute los comandos a continuación. Recuerde modificar el valor **\<deployment>** por un nombre único para su despliegue y el **\<namespace>** creado en el paso anterior.
 
 ```
-kubectl create deployment <nombreapellidodeployment> --image=us.icr.io/tomcatns/tomcat2020
-Ejemplo: kubectl create deployment julianaleondeployment --image=us.icr.io/tomcatns/tomcat2020 --n=julianaleonns
+kubectl create deployment <deployment> --image=us.icr.io/tomcatns/tomcat2020 -n <namespace>
+Ejemplo: kubectl create deployment julianaleondeployment --image=us.icr.io/tomcatns/tomcat2020 -n julianaleonns
 ```
 
-   3. Luego debe exponer la imagen docker en el puerto por defecto de Tomcat. Nuevamente recuerde modificar el valor **\<nombreapellidodeployment>** por el nombre de su despliegue, que fue configurado en el paso anterior.
+   4. Luego debe exponer la imagen docker en el puerto por defecto de Tomcat. Nuevamente recuerde modificar los valores **\<deployment>** y **\<namespace>.**
 
 ```
-kubectl expose deployment/<nombreapellidodeployment> --type=NodePort --port=8080
-Ejemplo: kubectl expose deployment/julianaleondeployment --type=NodePort --port=8080 --n=julianaleonns
+kubectl expose deployment/<deployment> --type=NodePort --port=8080 -n <namespace>
+Ejemplo: kubectl expose deployment/julianaleondeployment --type=NodePort --port=8080 -n julianaleonns
 ```
 
-   4. Para el correcto funcionamiento de la imagen de Tomcat es necesario cambiar el nombre de webapps.dist a webapps. Para esto corra el siguiente comando, el cual  listará los pods presentes en su clúster; identifique aquel que inicia por el nombre de su despliegue **\<nombreapellidodeployment>** y copie el nombre completo para el siguiente paso.
+   5. Para el correcto funcionamiento de la imagen de Tomcat es necesario cambiar el nombre de webapps.dist a webapps. Para esto corra el siguiente comando, el cual  listará los pods presentes en su clúster; identifique aquel que inicia por el nombre de su despliegue **\<deployment>** y copie el nombre completo para el siguiente paso. Modifique el valor **\<namespace>.**
 
 ```
-kubectl get pods --n=julianaleonns
+kubectl get pods -n <namespace>
+kubectl get pods -n julianaleonns
 ```
 
-   5. Para el siguiente comando, reemplace el valor **\<nombre\_pod>** por el nombre copiado anteriormente.
+   6. Para el siguiente comando, reemplace el valor **\<pod>** por el nombre copiado anteriormente.
 
 ```
-kubectl exec --stdin --tty <nombre_pod> -- /bin/bash
+kubectl exec --stdin --tty <pod> -- /bin/bash 
 Ejemplo: kubectl exec --stdin --tty julianaleondeployment-845f6d5db5-bzfkz -- /bin/bash
 ```
 
-    6. El comando anterior obtiene un shell en el pod especificado, allí corra los comandos siguientes para modificar webapps.dist.
+    7. El comando anterior obtiene un shell en el pod especificado, allí corra los comandos siguientes para modificar webapps.dist.
 
 ```
 mv webapps webapps2
@@ -82,13 +79,15 @@ exit
 1.  Con el siguiente comando podrá ver la información general del clúster, identifique la **IP pública del clúster** (cluster-prueba).
 
 ```
-ibmcloud cs workers --cluster cluster-prueba --n=julianaleonns
+ibmcloud cs workers --cluster cluster-prueba -n <namespace>
+Ejemplo: ibmcloud cs workers --cluster cluster-prueba -n julianaleonns
 ```
 
-    2. Con el siguiente comando podrá ver los servicios creados en el clúster, identifique su servicio cuyo nombre debe ser **\<nombreapellidodeployment>** y copie el puerto que aparece al lado del puerto 8080.
+    2. Con el siguiente comando podrá ver los servicios creados en el clúster, identifique su servicio cuyo nombre debe ser **\<deployment>** y copie el puerto que aparece al lado del puerto 8080.
 
 ```
-kubectl get services --n=julianaleonns
+kubectl get services -n  <namespace>
+Ejemplo: kubectl get services -n julianaleonns
 ```
 
 ![](https://user-images.githubusercontent.com/60897075/93119916-3a296d00-f688-11ea-8594-feed4169e1ee.png)
