@@ -44,7 +44,7 @@ Ejemplo: kubectl create deployment julianaleondeployment --image=us.icr.io/tomca
 ```
 
    4. Luego debe exponer la imagen docker en el puerto por defecto de Tomcat. Nuevamente recuerde modificar los valores **\<deployment>** y **\<namespace>.**
-**NOTA**
+>**NOTA**
 
 ```
 kubectl expose deployment/<deployment> --type=NodePort --port=8080 -n <namespace>
