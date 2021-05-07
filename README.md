@@ -55,6 +55,7 @@ Ejemplo: kubectl expose deployment/julianaleondeployment --type=NodePort --port=
 ```
 kubectl expose deployment/<deployment> --type=LoadBalancer --name=<service>  --port=8080 --target-port=8080
 ```
+En la etiqueta <service> indique un nombre para su servicio.
 
    5. Para el correcto funcionamiento de la imagen de Tomcat es necesario cambiar el nombre de webapps.dist a webapps. Para esto corra el siguiente comando, el cual  listará los pods presentes en su clúster; identifique aquel que inicia por el nombre de su despliegue **\<deployment>** y copie el nombre completo para el siguiente paso. Modifique el valor **\<namespace>.**
 
