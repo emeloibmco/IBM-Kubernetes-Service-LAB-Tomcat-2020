@@ -44,11 +44,16 @@ Ejemplo: kubectl create deployment julianaleondeployment --image=us.icr.io/tomca
 ```
 
    4. Luego debe exponer la imagen docker en el puerto por defecto de Tomcat. Nuevamente recuerde modificar los valores **\<deployment>** y **\<namespace>.**
->**NOTA**
+>**NOTA 1**: Si esta trabajando en infraestructura clásico ejecute el siguiente comando.
 
 ```
 kubectl expose deployment/<deployment> --type=NodePort --port=8080 -n <namespace>
 Ejemplo: kubectl expose deployment/julianaleondeployment --type=NodePort --port=8080 -n julianaleonns
+```
+
+>**NOTA 2**: Si esta trabajando en VPC (Load Balancer) ejecute el siguiente comando.
+```
+kubectl expose deployment/hello-world-deployment --type=LoadBalancer --name=hw-lb-svc  --port=8080 --target-port=8080
 ```
 
    5. Para el correcto funcionamiento de la imagen de Tomcat es necesario cambiar el nombre de webapps.dist a webapps. Para esto corra el siguiente comando, el cual  listará los pods presentes en su clúster; identifique aquel que inicia por el nombre de su despliegue **\<deployment>** y copie el nombre completo para el siguiente paso. Modifique el valor **\<namespace>.**
