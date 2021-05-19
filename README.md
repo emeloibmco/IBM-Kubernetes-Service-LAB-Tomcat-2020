@@ -53,7 +53,7 @@ Ejemplo: kubectl expose deployment/julianaleondeployment --type=NodePort --port=
 
 >**NOTA 2**: Si esta trabajando con VPC (Load Balancer) ejecute el siguiente comando:
 ```
-kubectl expose deployment/<deployment> --type=LoadBalancer --name=<service>  --port=8080 --target-port=8080
+kubectl expose deployment/<deployment> --type=LoadBalancer --name=<service>  --port=8080 --target-port=8080 -n <namespace>
 ```
 En la etiqueta **\<service>** indique un nombre para su servicio.
 
