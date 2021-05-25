@@ -26,29 +26,26 @@ Una vez haya [iniciado sesión](https://cloud.ibm.com/login) con su cuenta de IB
 1.  Desde **IBM Cloud Shell** descargue la configuración del clúster mediante el siguiente comando (en el comando se usa el ID del clúster, que puede obtener mediante: `ibmcloud ks cluster ls`). Recuerde que puede hacer uso de **Ctrl + Shift + V** para pegar dentro de IBM Cloud Shell.
 
 ```
-ibmcloud ks cluster config --cluster btgjo8sw0613303fjbf0
+ibmcloud ks cluster config --cluster <id_cluster>
 ```
 
    2. Cree un espacio de nombres mediante el siguiente comando, modifique el valor \<namespace> por un nombre único.
 
 ```
 kubectl create namespace <namespace>
- Ejemplo: kubectl create namespace julianaleonns
 ```
 
    3. Cree el servicio de despliegue en Kubernetes, para esto, ejecute los comandos a continuación. Recuerde modificar el valor **\<deployment>** por un nombre único para su despliegue y el **\<namespace>** creado en el paso anterior.
 
 ```
-kubectl create deployment <deployment> --image=us.icr.io/tomcatns/tomcat2020 -n <namespace>
-Ejemplo: kubectl create deployment julianaleondeployment --image=us.icr.io/tomcatns/tomcat2020 -n julianaleonns
+kubectl create deployment <deployment> --image=us.icr.io/tomcatns/tomcat2020 
 ```
 
    4. Luego debe exponer la imagen docker en el puerto por defecto de Tomcat. Nuevamente recuerde modificar los valores **\<deployment>** y **\<namespace>.**
 >**NOTA 1**: Si esta trabajando con infraestructura clásica ejecute el siguiente comando:
 
 ```
-kubectl expose deployment/<deployment> --type=NodePort --port=8080 -n <namespace>
-Ejemplo: kubectl expose deployment/julianaleondeployment --type=NodePort --port=8080 -n julianaleonns
+kubectl expose deployment/<deployment> --type=NodePort --port=8080
 ```
 
 >**NOTA 2**: Si esta trabajando con VPC (Load Balancer) ejecute el siguiente comando:
@@ -61,7 +58,6 @@ En la etiqueta **\<service>** indique un nombre para su servicio.
 
 ```
 kubectl get pods -n <namespace>
-kubectl get pods -n julianaleonns
 ```
 
    6. Para el siguiente comando, reemplace el valor **\<pod>** por el nombre copiado anteriormente.
