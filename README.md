@@ -64,7 +64,6 @@ kubectl get pods -n <namespace>
 
 ```
 kubectl exec --stdin --tty <pod> -- /bin/bash 
-Ejemplo: kubectl exec --stdin --tty julianaleondeployment-845f6d5db5-bzfkz -- /bin/bash
 ```
 
     7. El comando anterior obtiene un shell en el pod especificado, allí corra los comandos siguientes para modificar webapps.dist.
@@ -90,7 +89,6 @@ Ejemplo: ibmcloud cs workers --cluster cluster-prueba -n julianaleonns
 
 ```
 kubectl get services -n  <namespace>
-Ejemplo: kubectl get services -n julianaleonns
 ```
 
 ![](https://user-images.githubusercontent.com/60897075/93119916-3a296d00-f688-11ea-8594-feed4169e1ee.png)
