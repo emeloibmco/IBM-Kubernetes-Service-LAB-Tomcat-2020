@@ -82,7 +82,6 @@ exit
 
 ```
 ibmcloud cs workers --cluster cluster-prueba -n <namespace>
-Ejemplo: ibmcloud cs workers --cluster cluster-prueba -n julianaleonns
 ```
 
     2. Con el siguiente comando podrá ver los servicios creados en el clúster, identifique su servicio cuyo nombre debe ser **\<deployment>** y copie el puerto que aparece al lado del puerto 8080.
