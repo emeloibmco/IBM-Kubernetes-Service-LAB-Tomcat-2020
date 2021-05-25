@@ -38,14 +38,14 @@ kubectl create namespace <namespace>
    3. Cree el servicio de despliegue en Kubernetes, para esto, ejecute los comandos a continuación. Recuerde modificar el valor **\<deployment>** por un nombre único para su despliegue y el **\<namespace>** creado en el paso anterior.
 
 ```
-kubectl create deployment <deployment> --image=us.icr.io/tomcatns/tomcat2020 
+kubectl create deployment <deployment> --image=us.icr.io/tomcatns/tomcat2020 -n <namespace>
 ```
 
    4. Luego debe exponer la imagen docker en el puerto por defecto de Tomcat. Nuevamente recuerde modificar los valores **\<deployment>** y **\<namespace>.**
 >**NOTA 1**: Si esta trabajando con infraestructura clásica ejecute el siguiente comando:
 
 ```
-kubectl expose deployment/<deployment> --type=NodePort --port=8080
+kubectl expose deployment/<deployment> --type=NodePort --port=8080 -n <namespace>
 ```
 
 >**NOTA 2**: Si esta trabajando con VPC (Load Balancer) ejecute el siguiente comando:
